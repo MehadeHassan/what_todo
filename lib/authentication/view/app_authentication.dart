@@ -1,0 +1,49 @@
+import 'package:flow_builder/flow_builder.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:what_todo/authentication/authentication.dart';
+import 'package:what_todo/home/home.dart';
+import 'package:what_todo/log_in/log_in.dart';
+import 'package:what_todo/theme/theme.dart';
+
+class AppAuthentication extends StatelessWidget {
+  const AppAuthentication({final Key? key}) : super(key: key);
+
+  @override
+  Widget build(final BuildContext context) => MaterialApp(
+        title: 'What ToDo',
+        theme: ThemeData(
+          colorScheme: const ColorScheme.light(),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size.fromHeight(50),
+            ),
+          ),
+        ),
+        darkTheme: ThemeData(
+          colorScheme: const ColorScheme.dark(),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size.fromHeight(50),
+            ),
+          ),
+        ),
+        themeMode:
+            context.select<ThemeCubit, ThemeMode>((final cubit) => cubit.state),
+        debugShowCheckedModeBanner: false,
+        home: FlowBuilder<AuthenticationState>(
+          key: GlobalKey(debugLabel: 'AppAuthentication'),
+          state: context.select<AuthenticationBloc, AuthenticationState>(
+            (final bloc) => bloc.state,
+          ),
+          onGeneratePages: (final state, final _) {
+            switch (state.status) {
+              case AuthenticationStatus.authenticated:
+                return [HomePage.page()];
+              case AuthenticationStatus.unauthenticated:
+                return [LogInPage.page()];
+            }
+          },
+        ),
+      );
+}
