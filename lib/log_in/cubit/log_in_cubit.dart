@@ -81,7 +81,7 @@ class LogInCubit extends Cubit<LogInState> {
     } on AuthenticationException catch (exception) {
       emit(
         state.copyWith(
-          status: FormzStatus.invalid,
+          status: FormzStatus.submissionFailure,
           exception: exception,
         ),
       );
@@ -99,7 +99,7 @@ class LogInCubit extends Cubit<LogInState> {
     } on AuthenticationException catch (exception) {
       emit(
         state.copyWith(
-          status: FormzStatus.invalid,
+          status: FormzStatus.submissionFailure,
           exception: exception,
         ),
       );

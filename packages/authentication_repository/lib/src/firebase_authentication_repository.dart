@@ -110,6 +110,10 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
       logWarning('logInWithGoogle failed');
 
       throw e.toAuthenticationException;
+    } on Exception {
+      logError(
+        'logInWithGoogle failed',
+      );
     }
   }
 }

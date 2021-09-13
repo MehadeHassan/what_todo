@@ -22,7 +22,15 @@ class LogInForm extends StatelessWidget {
               SizedBox(height: 20),
               LogInButton(),
               SizedBox(height: 20),
+              ButtonBar(
+                alignment: MainAxisAlignment.center,
+                children: [
+                  LogInWithGoogle(),
+                  LogInAnonymous(),
+                ],
+              ),
               SignUpButton(),
+              SizedBox(height: 20),
             ],
           ),
         ),
@@ -107,5 +115,25 @@ class SignUpButton extends StatelessWidget {
   Widget build(final BuildContext context) => TextButton(
         onPressed: () => Navigator.of(context).push<void>(SignUpPage.route()),
         child: const Text("Don't have an account"),
+      );
+}
+
+class LogInWithGoogle extends StatelessWidget {
+  const LogInWithGoogle({final Key? key}) : super(key: key);
+
+  @override
+  Widget build(final BuildContext context) => OutlinedButton(
+        onPressed: context.read<LogInCubit>().logInWithGooglePressed,
+        child: Text('Google'),
+      );
+}
+
+class LogInAnonymous extends StatelessWidget {
+  const LogInAnonymous({final Key? key}) : super(key: key);
+
+  @override
+  Widget build(final BuildContext context) => OutlinedButton(
+        onPressed: context.read<LogInCubit>().logInAnonymousPressed,
+        child: Text('Anonymous'),
       );
 }

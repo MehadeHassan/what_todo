@@ -20,12 +20,19 @@ class LogInPage extends StatelessWidget {
   Widget build(final BuildContext context) =>
       BlocListener<LogInCubit, LogInState>(
         listener: (final context, final state) {
-          if (state.status.isSubmissionFailure || state.status.isInvalid) {
+          if (state.status.isSubmissionFailure) {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(
                 SnackBar(
-                  content: Text(state.exception?.message ?? 'Log In failure'),
+                  content: Text(
+                    state.exception?.message ?? 'Log In failure',
+                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          color: Theme.of(context).colorScheme.onError,
+                        ),
+                  ),
+                  padding: const EdgeInsets.all(20),
+                  backgroundColor: Theme.of(context).colorScheme.error,
                 ),
               );
           }
