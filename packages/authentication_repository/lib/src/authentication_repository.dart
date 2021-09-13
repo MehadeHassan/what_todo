@@ -18,4 +18,6 @@ abstract class AuthenticationRepository {
   Future<void> logOut();
 
   Future<void> logInAnonymously();
+
+  Future<void> logInWithGoogle();
 }

@@ -34,7 +34,6 @@ class LogInCubit extends Cubit<LogInState> {
     final password = PasswordInput.dirty(input);
     final passwordError = state.password.error;
 
-
     emit(
       state.copyWith(
         password: password,
@@ -67,6 +66,43 @@ class LogInCubit extends Cubit<LogInState> {
           ),
         );
       }
+    }
+  }
+
+  Future<void> logInWithGooglePressed() async {
+    emit(
+      state.copyWith(
+        status: FormzStatus.submissionInProgress,
+      ),
+    );
+
+    try {
+      await _authenticationRepository.logInWithGoogle();
+    } on AuthenticationException catch (exception) {
+      emit(
+        state.copyWith(
+          status: FormzStatus.invalid,
+          exception: exception,
+        ),
+      );
+    }
+  }
+
+  Future<void> logInAnonymousPressed() async {
+    emit(
+      state.copyWith(
+        status: FormzStatus.submissionInProgress,
+      ),
+    );
+    try {
+      await _authenticationRepository.logInAnonymously();
+    } on AuthenticationException catch (exception) {
+      emit(
+        state.copyWith(
+          status: FormzStatus.invalid,
+          exception: exception,
+        ),
+      );
     }
   }
 }

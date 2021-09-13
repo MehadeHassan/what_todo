@@ -20,7 +20,7 @@ class LogInPage extends StatelessWidget {
   Widget build(final BuildContext context) =>
       BlocListener<LogInCubit, LogInState>(
         listener: (final context, final state) {
-          if (state.status.isSubmissionFailure) {
+          if (state.status.isSubmissionFailure || state.status.isInvalid) {
             ScaffoldMessenger.of(context)
               ..hideCurrentSnackBar()
               ..showSnackBar(
@@ -37,6 +37,7 @@ class LogInPage extends StatelessWidget {
               title: const Text('Log In'),
             ),
             body: const LogInForm(),
+            resizeToAvoidBottomInset: false,
           ),
         ),
       );
