@@ -10,40 +10,47 @@ class AppAuthentication extends StatelessWidget {
   const AppAuthentication({final Key? key}) : super(key: key);
 
   @override
-  Widget build(final BuildContext context) => MaterialApp(
-        title: 'What ToDo',
-        theme: ThemeData(
-          colorScheme: const ColorScheme.light(),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50),
-            ),
+  Widget build(final BuildContext context) {
+    
+    final themeMode =
+        context.select<ThemeCubit, ThemeMode>((final cubit) => cubit.state);
+
+    final authenticationState = context.select<AuthenticationBloc, AuthenticationState>(
+          (final bloc) => bloc.state,
+        );
+        
+    return MaterialApp(
+      title: 'What ToDo',
+      theme: ThemeData(
+        colorScheme: const ColorScheme.light(),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size.fromHeight(50),
           ),
         ),
-        darkTheme: ThemeData(
-          colorScheme: const ColorScheme.dark(),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size.fromHeight(50),
-            ),
+      ),
+      darkTheme: ThemeData(
+        colorScheme: const ColorScheme.dark(),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            minimumSize: const Size.fromHeight(50),
           ),
         ),
-        themeMode:
-            context.select<ThemeCubit, ThemeMode>((final cubit) => cubit.state),
-        debugShowCheckedModeBanner: false,
-        home: FlowBuilder<AuthenticationState>(
-          key: GlobalKey(debugLabel: 'AppAuthentication'),
-          state: context.select<AuthenticationBloc, AuthenticationState>(
-            (final bloc) => bloc.state,
-          ),
-          onGeneratePages: (final state, final _) {
-            switch (state.status) {
-              case AuthenticationStatus.authenticated:
-                return [HomePage.page()];
-              case AuthenticationStatus.unauthenticated:
-                return [LogInPage.page()];
-            }
-          },
-        ),
-      );
+      ),
+      themeMode: themeMode,
+      debugShowCheckedModeBanner: false,
+      home: FlowBuilder<AuthenticationState>(
+        key: GlobalKey(debugLabel: 'AppAuthentication'),
+        state: authenticationState,
+        onGeneratePages: (final state, final _) {
+          switch (state.status) {
+            case AuthenticationStatus.authenticated:
+              return [HomePage.page()];
+            case AuthenticationStatus.unauthenticated:
+              return [LogInPage.page()];
+          }
+        },
+      ),
+    );
+  }
 }

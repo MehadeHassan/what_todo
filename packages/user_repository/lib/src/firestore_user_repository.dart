@@ -9,13 +9,6 @@ class FirestoreUserRepository implements UserRepository {
 
   final FirebaseFirestore _firestore;
 
-  CollectionReference<UserEntity> get users =>
-      _firestore.collection('users').withConverter(
-            fromFirestore: (final snapshot, final _) =>
-                UserEntity.fromFirestore(snapshot),
-            toFirestore: (final value, final _) => value.toFirestore(),
-          );
-
   @override
   Future<void> addUser(final User user) async {
     try {
@@ -39,6 +32,23 @@ class FirestoreUserRepository implements UserRepository {
   }
 
   @override
+  Future<User> getUser(final String uid) async {
+    final snapshot = await users.doc(uid).get();
+    final userEntity = snapshot.data();
+
+    if (userEntity != null) {
+      try {
+        return User.fromEntity(userEntity);
+      } on Exception {
+        logWarning('failed to getUser $uid');
+        rethrow;
+      }
+    }
+
+    throw Exception('user not found');
+  }
+
+  @override
   Future<void> updateUser(final User user) async {
     try {
       await users.doc(user.uid).update(user.toEntity().toFirestore());
@@ -48,4 +58,11 @@ class FirestoreUserRepository implements UserRepository {
       rethrow;
     }
   }
+
+  CollectionReference<UserEntity> get users =>
+      _firestore.collection('users').withConverter(
+            fromFirestore: (final snapshot, final _) =>
+                UserEntity.fromFirestore(snapshot),
+            toFirestore: (final value, final _) => value.toFirestore(),
+          );
 }
