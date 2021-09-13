@@ -11,32 +11,18 @@ class AppAuthentication extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    
     final themeMode =
         context.select<ThemeCubit, ThemeMode>((final cubit) => cubit.state);
 
-    final authenticationState = context.select<AuthenticationBloc, AuthenticationState>(
-          (final bloc) => bloc.state,
-        );
-        
+    final authenticationState =
+        context.select<AuthenticationBloc, AuthenticationState>(
+      (final bloc) => bloc.state,
+    );
+
     return MaterialApp(
       title: 'What ToDo',
-      theme: ThemeData(
-        colorScheme: const ColorScheme.light(),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(50),
-          ),
-        ),
-      ),
-      darkTheme: ThemeData(
-        colorScheme: const ColorScheme.dark(),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            minimumSize: const Size.fromHeight(50),
-          ),
-        ),
-      ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
       themeMode: themeMode,
       debugShowCheckedModeBanner: false,
       home: FlowBuilder<AuthenticationState>(
