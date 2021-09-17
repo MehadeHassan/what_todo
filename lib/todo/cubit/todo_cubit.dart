@@ -19,6 +19,7 @@ class TodoCubit extends Cubit<TodoState> {
   @override
   Future<void> close() {
     _todoSubscription?.cancel();
+    
     return super.close();
   }
 

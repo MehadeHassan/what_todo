@@ -52,17 +52,13 @@ class NewWidget extends StatelessWidget {
               if (state is TodoLoaded) {
                 final todos = state.todos;
 
-                if (todos.isEmpty) {
-                  return const Text(
-                    "umm, looks like you don't have any ToDos",
-                  );
-                } else {
-                  return ListView.builder(
-                    itemBuilder: (final context, final index) =>
-                        TodoItem(todo: todos[index]),
-                    itemCount: todos.length,
-                  );
-                }
+                return todos.isEmpty
+                    ? const Text("umm, looks like you don't have any ToDos")
+                    : ListView.builder(
+                        itemBuilder: (final context, final index) =>
+                            TodoItem(todo: todos[index]),
+                        itemCount: todos.length,
+                      );
               }
 
               if (state is TodoFailure) {
