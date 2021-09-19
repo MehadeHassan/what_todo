@@ -22,24 +22,23 @@ class AppAuthentication extends StatelessWidget {
 
     return MaterialApp(
       title: 'What ToDo',
-      theme: lightTheme(lightColorScheme),
-      darkTheme: darkTheme(darkColorScheme),
-      themeMode: ThemeMode.system,
+      theme: appTheme(colorScheme: lightColorScheme),
+      darkTheme: appTheme(colorScheme: darkColorScheme),
       debugShowCheckedModeBanner: false,
+      home: const ThemePage(),
 
-      
-      home: FlowBuilder<AuthenticationState>(
-        key: GlobalKey(debugLabel: 'AppAuthentication'),
-        state: authenticationState,
-        onGeneratePages: (final state, final _) {
-          switch (state.status) {
-            case AuthenticationStatus.authenticated:
-              return [HomePage.page()];
-            case AuthenticationStatus.unauthenticated:
-              return [LogInPage.page()];
-          }
-        },
-      ),
+      // home: FlowBuilder<AuthenticationState>(
+      //   key: GlobalKey(debugLabel: 'AppAuthentication'),
+      //   state: authenticationState,
+      //   onGeneratePages: (final state, final _) {
+      //     switch (state.status) {
+      //       case AuthenticationStatus.authenticated:
+      //         return [HomePage.page()];
+      //       case AuthenticationStatus.unauthenticated:
+      //         return [LogInPage.page()];
+      //     }
+      //   },
+      // ),
     );
   }
 }

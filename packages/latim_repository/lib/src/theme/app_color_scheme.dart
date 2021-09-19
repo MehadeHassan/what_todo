@@ -2,10 +2,30 @@ import 'package:flutter/material.dart';
 
 /// Standard Material dark Color Palette
 ColorScheme get darkColorScheme => const ColorScheme.dark().copyWith(
+      /// ThemeData.canvasColor
+      /// ThemeData.scaffoldBackgroundColor [from canvasColor]
+      /// ThemeData.backgroundColor
+      /// ThemeData.dialogBackgroundColor
+      /// 
+      background: const Color(0xFF121212),
+      onBackground: Colors.white,
+
+      // ThemData.primaryColor in [Brightness.dark]
+      // ThemeData.cardColor
+      // SnackBar.backgroundColor
+      // Card.color
+      // DividerColor
+      // ThemeData.bottomAppBarColor
+
+      surface: const Color(0xff121212),
+      /// ThemeData.
+      onSurface: Colors.white,
+
+      /// AppBar in [Brightness.light]
       // TextFiled labelText,border,
-      // TextButton's primary text color
-      // OutlinedButton's primary text color
-      // ElevatedButton's primary bd color
+      // TextButton's primary
+      // OutlinedButton's primary
+      // ElevatedButton's primary
       primary: Colors.orange.shade200,
       primaryVariant: const Color(0xff3700B3),
       onPrimary: Colors.black,
@@ -13,25 +33,21 @@ ColorScheme get darkColorScheme => const ColorScheme.dark().copyWith(
       // FAB,BottomNavigationBar,
       secondary: Colors.cyan.shade200,
       secondaryVariant: Colors.teal,
+      // FAB's Child
       onSecondary: Colors.black,
 
-      // AppBar in DarkTheme
-      // SnackBar's backgroundColor
-      surface: const Color(0xff121212),
-      onSurface: Colors.white,
-
-      background: const Color(0xff121212),
-      onBackground: Colors.white,
+      // ThemeData.errorColor
       // TextField border,errorText,
-      // SnackBar
+      //
       error: const Color(0xffcf6679),
       onError: Colors.black,
+
+      /// ThemeData.brightness
       brightness: Brightness.dark,
     );
 
 /// Standard Material light Color Palette
 ColorScheme get lightColorScheme => const ColorScheme.light().copyWith(
-      // AppBar in LightTheme
       primary: const Color(0xff6200ee),
       primaryVariant: const Color(0xff3700b3),
       secondary: const Color(0xff03dac6),
