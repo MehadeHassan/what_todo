@@ -42,6 +42,19 @@
             "flutterMode": "profile"
         },
         {
+            "name": "latim_repository",
+            "cwd": "packages/latim_repository",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "latim_repository (profile mode)",
+            "cwd": "packages/latim_repository",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
             "name": "todo_repository",
             "cwd": "packages/todo_repository",
             "request": "launch",

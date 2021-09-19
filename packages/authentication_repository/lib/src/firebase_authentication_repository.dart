@@ -116,6 +116,34 @@ class FirebaseAuthenticationRepository implements AuthenticationRepository {
       );
     }
   }
+
+  @override
+  Future<void> logInWithFacebook() {
+    // TODO: implement logInWithFacebook
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> logInWithGithub() {
+    // TODO: implement logInWithGithub
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> logInWithTwitter() {
+    // TODO: implement logInWithTwitter
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> resetPassword(final String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      log(e.code, name: 'resetPassword Error');
+      throw e.toAuthenticationException;
+    }
+  }
 }
 
 extension on User {

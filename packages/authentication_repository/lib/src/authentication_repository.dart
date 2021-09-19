@@ -20,4 +20,12 @@ abstract class AuthenticationRepository {
   Future<void> logInAnonymously();
 
   Future<void> logInWithGoogle();
+
+  Future<void> logInWithFacebook();
+
+  Future<void> logInWithTwitter();
+
+  Future<void> logInWithGithub();
+
+  Future<void> resetPassword(final String email);
 }
