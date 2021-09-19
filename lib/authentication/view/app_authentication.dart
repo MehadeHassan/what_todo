@@ -22,10 +22,12 @@ class AppAuthentication extends StatelessWidget {
 
     return MaterialApp(
       title: 'What ToDo',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: themeMode,
+      theme: lightTheme(lightColorScheme),
+      darkTheme: darkTheme(darkColorScheme),
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
+
+      
       home: FlowBuilder<AuthenticationState>(
         key: GlobalKey(debugLabel: 'AppAuthentication'),
         state: authenticationState,

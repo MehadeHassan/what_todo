@@ -32,7 +32,7 @@ class LogInPage extends StatelessWidget {
                         ),
                   ),
                   padding: const EdgeInsets.all(20),
-                  backgroundColor: Theme.of(context).colorScheme.error,
+                  // backgroundColor: Theme.of(context).colorScheme.error,
                 ),
               );
           }
