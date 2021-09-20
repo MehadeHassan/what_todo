@@ -1,68 +1,61 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-/// Standard Fluter Theme
-ThemeData appTheme({
-  required final ColorScheme colorScheme,
-  final TextTheme? textTheme,
+ThemeData appThemeData({
+  final ColorScheme? colorScheme,
+  final Typography? typography,
 }) {
-  final isDark = colorScheme.brightness == Brightness.dark;
-  // final typography = Typography.material2018(platform: defaultTargetPlatform);
+  final _colorScheme = colorScheme ?? const ColorScheme.dark();
+  final _typography = typography ?? Typography();
 
-  final primaryColor = isDark ? colorScheme.surface : colorScheme.primary;
-  final onPrimaryColor = isDark ? colorScheme.onSurface : colorScheme.onPrimary;
+  final _isDarkColorScheme = _colorScheme.brightness == Brightness.dark;
 
-  // final defaultTextTheme = isDark ? typography.white : typography.black;
+  final _primaryColor =
+      _isDarkColorScheme ? _colorScheme.surface : _colorScheme.primary;
+  final _onPrimaryColor =
+      _isDarkColorScheme ? _colorScheme.onSurface : _colorScheme.onPrimary;
+
+  final _textTheme = _isDarkColorScheme ? _typography.white : _typography.black;
 
   return ThemeData(
-    canvasColor: colorScheme.background,
-    // scaffoldBackgroundColor: colorScheme.background,
-    // backgroundColor: colorScheme.background,
-    dialogBackgroundColor: colorScheme.background,
+    /// [background]
+    backgroundColor: _colorScheme.background,
+    canvasColor: _colorScheme.background,
+    scaffoldBackgroundColor: _colorScheme.background,
+    dialogBackgroundColor: _colorScheme.background,
 
-    cardColor: colorScheme.surface,
-    bottomAppBarColor: colorScheme.surface,
-    dividerColor: colorScheme.onSurface.withOpacity(0.12),
+    /// [surface]
+    cardColor: _colorScheme.surface,
+    dividerColor: _colorScheme.onSurface.withOpacity(.5),
+    bottomAppBarColor: _colorScheme.surface,
 
-    primaryColor: primaryColor,
-
-    /// The brightness of the [primaryColor]. Used to determine the color of text and
-    /// icons placed on top of the primary color (e.g. toolbar text).
-    // primaryColorBrightness: ThemeData.estimateBrightnessForColor(primaryColor),
-    primaryColorBrightness: colorScheme.brightness,
-
-    errorColor: colorScheme.error,
-    indicatorColor: onPrimaryColor,
-    // responsible for Overlying surface color on background color
-    // if true, it will elevate the surface on background.
-    applyElevationOverlayColor: isDark,
-
-    colorScheme: colorScheme,
-    brightness: colorScheme.brightness,
-
-    primaryIconTheme: IconThemeData(
-      color: onPrimaryColor,
+    /// [primary]
+    primaryColor: _primaryColor,
+    indicatorColor: _onPrimaryColor,
+    primaryColorBrightness: ThemeData.estimateBrightnessForColor(
+      _primaryColor,
     ),
 
-    // typography: typography,
+    /// [error]
+    errorColor: _colorScheme.error,
 
-    // textTheme: defaultTextTheme.merge(textTheme),
+    /// [overlay in DarkColorScheme]
+    applyElevationOverlayColor: _isDarkColorScheme,
+    colorScheme: _colorScheme,
+    brightness: _colorScheme.brightness,
+    textTheme: _textTheme,
+    typography: _typography,
 
-    ////////////////////////////////////
-    inputDecorationTheme: const InputDecorationTheme(
-      border: OutlineInputBorder(),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: _colorScheme.surface,
+      contentTextStyle: TextStyle(
+        color: _colorScheme.onSurface,
+      ),
     ),
-    toggleButtonsTheme: const ToggleButtonsThemeData(),
-
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(),
-    ),
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(),
-    ),
-    outlinedButtonTheme: OutlinedButtonThemeData(
-      style: OutlinedButton.styleFrom(),
-    ),
-    snackBarTheme: const SnackBarThemeData(),
+    // primaryIconTheme: _isDarkColorScheme
+    //     ? const IconThemeData(color: Colors.red)
+    //     : const IconThemeData(color: Colors.green),
+    // iconTheme: _isDarkColorScheme
+    //     ? const IconThemeData(color: Colors.amber)
+    //     : const IconThemeData(color: Colors.blue),
   );
 }

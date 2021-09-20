@@ -27,9 +27,9 @@ class NewWidget extends StatelessWidget {
   Widget build(final BuildContext context) => Scaffold(
         appBar: AppBar(
           actions: [
-            IconButton(
-              icon: const Icon(Icons.toggle_off_rounded),
-              onPressed: context.read<ThemeCubit>().toggleThemeMode,
+            const IconButton(
+              icon: Icon(Icons.toggle_off_rounded),
+              onPressed: null,
             ),
             IconButton(
               icon: const Icon(Icons.logout_outlined),

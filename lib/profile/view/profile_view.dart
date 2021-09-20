@@ -17,9 +17,29 @@ class ProfileView extends StatelessWidget {
             } else if (state is ProfileLoaded) {
               return Text(state.user.uid);
             } else {
-              return const Text('umm! failed to load user');
+              return Column(
+                children: const [
+                  Text('umm! failed to load user'),
+                  Icon(Icons.ac_unit),
+                  Card(
+                    child: SizedBox(
+                      height: 50,
+                      width: double.infinity,
+                      child: Text('try again later'),
+                    ),
+                  ),
+                ],
+              );
             }
           },
+        ),
+        bottomNavigationBar: BottomAppBar(
+          child: Row(
+            children: [
+              Icon(Icons.account_circle),
+              IconButton(onPressed: () {}, icon: Icon(Icons.ac_unit))
+            ],
+          ),
         ),
       );
 }

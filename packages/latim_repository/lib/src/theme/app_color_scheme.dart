@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+/// Contrast Checker
+/// https://color.adobe.com/create/color-contrast-analyzer
+/// https://coolors.co/contrast-checker/ffffff-121212
+/// https://colourcontrast.cc/
 
 /// Standard Material dark Color Palette
 ColorScheme get darkColorScheme => const ColorScheme.dark().copyWith(
@@ -6,22 +10,22 @@ ColorScheme get darkColorScheme => const ColorScheme.dark().copyWith(
       /// ThemeData.scaffoldBackgroundColor [from canvasColor]
       /// ThemeData.backgroundColor
       /// ThemeData.dialogBackgroundColor
-      /// 
+      ///
       background: const Color(0xFF121212),
       onBackground: Colors.white,
 
-      // ThemData.primaryColor in [Brightness.dark]
+      ///# ThemData.primaryColor in [Brightness.dark] 
       // ThemeData.cardColor
-      // SnackBar.backgroundColor
-      // Card.color
-      // DividerColor
+      // ThemeData.dialogBackgroundColor
       // ThemeData.bottomAppBarColor
+      // ThemeData.snackBarTheme.backgroundColor
 
       surface: const Color(0xff121212),
-      /// ThemeData.
+      
+      // ThemeData.snackBarTheme.contentTextStyle.color
       onSurface: Colors.white,
 
-      /// AppBar in [Brightness.light]
+      ///# ThemData.primaryColor in [Brightness.light] 
       // TextFiled labelText,border,
       // TextButton's primary
       // OutlinedButton's primary
