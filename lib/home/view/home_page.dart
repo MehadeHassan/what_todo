@@ -20,8 +20,8 @@ class HomePage extends StatelessWidget {
           builder: (final context, final state) => IndexedStack(
             index: state,
             children: const [
-              ProfilePage(),
               TodoPage(),
+              ProfilePage(),
             ],
           ),
         ),
