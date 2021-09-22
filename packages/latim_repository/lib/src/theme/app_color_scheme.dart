@@ -1,68 +1,96 @@
 import 'package:flutter/material.dart';
+
 /// Contrast Checker
 /// https://color.adobe.com/create/color-contrast-analyzer
 /// https://coolors.co/contrast-checker/ffffff-121212
 /// https://colourcontrast.cc/
 
-/// Standard Material dark Color Palette
 ColorScheme get darkColorScheme => const ColorScheme.dark().copyWith(
-      /// ThemeData.canvasColor
-      /// ThemeData.scaffoldBackgroundColor [from canvasColor]
-      /// ThemeData.backgroundColor
-      /// ThemeData.dialogBackgroundColor
-      ///
+      //! ThemeData.backgroundColor
+      //! ThemeData.canvasColor
+      //! ThemeData.scaffoldBackgroundColor
+      //! ThemeData.dialogBackgroundColor
+      //  showModalBottomSheet.backgroundColor
       background: const Color(0xFF121212),
       onBackground: Colors.white,
 
-      ///# ThemData.primaryColor in [Brightness.dark] 
-      // ThemeData.cardColor
-      // ThemeData.dialogBackgroundColor
-      // ThemeData.bottomAppBarColor
-      // ThemeData.snackBarTheme.backgroundColor
-      ///AppBar.backgroundColor in [Brightness.dark] 
-      surface: const Color(0xff121212),
-      
-      // ThemeData.snackBarTheme.contentTextStyle.color
+      // AppBar.backgroundColor
+      //! ThemeData.cardColor
+      //! ThemeData.bottomAppBarColor
+      surface: const Color(0xFF121212),
       onSurface: Colors.white,
 
-      ///# ThemData.primaryColor in [Brightness.light] 
-      // TextFiled labelText,border,
-      // TextButton's primary
-      // OutlinedButton's primary
-      // ElevatedButton's primary
+      // TextFiled.focusBorderColor
+      // TextFiled.cursorColor
+      // TextFiled.cursorColor
+      // ElevatedButton.primary
+      // OutlinedButton.primary
+      // TextButton.primary
+      //! ThemeData.indicatorColor
+
       primary: Colors.orange.shade200,
-      primaryVariant: const Color(0xff3700B3),
+      primaryVariant: Colors.orange,
       onPrimary: Colors.black,
 
-      // FAB,BottomNavigationBar,
-      secondary: Colors.cyan.shade200,
-      secondaryVariant: Colors.teal,
-      // FAB's Child
+      // FAB.backgroundColor
+      // BottomNavigationBar.selectedItemColor
+      secondary: Colors.teal.shade200,
+      secondaryVariant: Colors.teal[700],
       onSecondary: Colors.black,
 
-      // ThemeData.errorColor
-      // TextField border,errorText,
-      //
+      //! ThemeData.errorColor
+      // TextFiled.errorBorder.color
+      // TextFiled.errorText.color
       error: const Color(0xffcf6679),
       onError: Colors.black,
 
-      /// ThemeData.brightness
+      //! ThemeData.brightness
       brightness: Brightness.dark,
     );
 
-/// Standard Material light Color Palette
 ColorScheme get lightColorScheme => const ColorScheme.light().copyWith(
+      //! ThemeData.backgroundColor
+      //! ThemeData.canvasColor
+      //! ThemeData.scaffoldBackgroundColor
+      //! ThemeData.dialogBackgroundColor
+      //  showModalBottomSheet.backgroundColor
+      background: Colors.white,
+      onBackground: Colors.black,
+
+      //! ThemeData.cardColor
+      //! ThemeData.bottomAppBarColor
+      surface: Colors.white,
+      // TextFiled.borderColor
+      onSurface: Colors.black,
+
+      // AppBar.backgroundColor
+      // TextFiled.focusBorderColor
+      // TextFiled.cursorColor
+      // ElevatedButton.primary
+      // OutlinedButton.primary
+      // TextButton.primary
+      // BottomNavigationBar.selectedItemColor
+      //! ThemeData.indicatorColor
       primary: const Color(0xff6200ee),
       primaryVariant: const Color(0xff3700b3),
+      onPrimary: Colors.white,
+
+      // FAB.backgroundColor
       secondary: const Color(0xff03dac6),
       secondaryVariant: const Color(0xff018786),
-      surface: Colors.white,
-      background: Colors.white,
-      error: const Color(0xffb00020),
-      onPrimary: Colors.white,
       onSecondary: Colors.black,
-      onSurface: Colors.black,
-      onBackground: Colors.black,
+
+      //! ThemeData.errorColor
+      // TextFiled.errorBorder.color
+      // TextFiled.errorText.color
+      error: const Color(0xffb00020),
       onError: Colors.white,
+
+      //! ThemeData.brightness
       brightness: Brightness.light,
+    );
+
+ColorScheme get demoColor => ColorScheme.fromSwatch(
+      primarySwatch: Colors.red,
+      brightness: Brightness.dark,
     );
