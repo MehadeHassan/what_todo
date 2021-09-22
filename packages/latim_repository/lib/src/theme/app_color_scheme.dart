@@ -19,7 +19,7 @@ ColorScheme get darkColorScheme => const ColorScheme.dark().copyWith(
       // ThemeData.dialogBackgroundColor
       // ThemeData.bottomAppBarColor
       // ThemeData.snackBarTheme.backgroundColor
-
+      ///AppBar.backgroundColor in [Brightness.dark] 
       surface: const Color(0xff121212),
       
       // ThemeData.snackBarTheme.contentTextStyle.color
